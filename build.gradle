@@ -10,4 +10,29 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
+test {
+    useJUnitPlatform()
+}
+bootRun.environment([
+        "WELCOME_MESSAGE": "hello",
+        "PORT": "8675",
+        "MEMORY_LIMIT":  "12G",
+        "CF_INSTANCE_INDEX":  "34",
+        "CF_INSTANCE_ADDR":  "123.sesame.street"
+
+])
+
+
+test.environment([
+        "WELCOME_MESSAGE": "Hello from test",
+        "PORT": "8675",
+        "MEMORY_LIMIT":  "12G",
+        "CF_INSTANCE_INDEX":  "34",
+        "CF_INSTANCE_ADDR":  "123.sesame.street",
+])
+
